@@ -1,0 +1,40 @@
+# Initial total donations for each charity (change charity names as needed)
+charity_totals = {"Charity 1": 0, "Charity 2": 0, "Charity 3": 0}
+
+# Main loop
+while True:
+    # User chooses a charity
+    charity_choice = input("Enter charity number (1, 2, or 3): ")
+
+    # Check for valid input
+    if charity_choice not in ("1", "2", "3"):
+        print("Invalid choice. Please enter 1, 2, or 3.")
+        continue
+
+    # Get the chosen charity name
+    chosen_charity = list(charity_totals.keys())[int(charity_choice) - 1]
+
+    # Get bill amount
+    bill_amount = float(input("Enter bill amount: "))
+
+    # Calculate donation
+    donation_amount = bill_amount * 0.01
+
+    # Update charity total
+    charity_totals[chosen_charity] += donation_amount
+
+    # Show result to manager
+    print(f"Donation of ${donation_amount:.2f} to {chosen_charity}.")
+
+    # Ask to continue
+    continue_choice = input("Continue? (y/n) ")
+    if continue_choice.lower() not in ("y", "yes"):
+        break
+
+# Show total donations for each charity and grand total
+print("\nDonation totals:")
+for charity, total in charity_totals.items():
+    print(f"{charity}: ${total:.2f}")
+
+print(f"\nGrand total: ${sum(charity_totals.values()):.2f}")
+
